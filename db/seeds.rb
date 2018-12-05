@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+3.times do |hike|
+  Hike.create(hikename: "Hike #{hike}", comments: "Comment #{hike}", tips: "tip #{hike}", user_id: User.last.id)
+end
+
+puts "created 3 hikes"
