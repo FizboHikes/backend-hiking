@@ -20,10 +20,6 @@ class ProfilesController < ApplicationController
     @profile.destroy
   end
 
-  def new
-    @profile = Profile.new
-  end
-
   def update
     respond_to do |format|
       if @profile.update(params.require(:profile).permit(:username, :about, :interests))
@@ -34,6 +30,5 @@ class ProfilesController < ApplicationController
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
-
-
+  end
 end
