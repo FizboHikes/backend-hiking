@@ -9,4 +9,5 @@ class User < ApplicationRecord
           jwt_revocation_strategy: self
 
   has_one :profile
+  has_many :hikes
 end
