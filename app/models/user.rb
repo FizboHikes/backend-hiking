@@ -7,4 +7,7 @@ class User < ApplicationRecord
           :validatable,
           :jwt_authenticatable,
           jwt_revocation_strategy: self
+
+  has_one :profile
+  has_many :hikes
 end
