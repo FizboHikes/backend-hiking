@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_05_181940) do
+ActiveRecord::Schema.define(version: 2018_12_07_195827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2018_12_05_181940) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.string "trailhead"
+    t.text "summary"
+    t.string "stars"
+    t.integer "maxEl"
+    t.string "location"
+    t.text "image"
+    t.string "difficulty"
+    t.integer "ascent"
+    t.integer "high"
     t.index ["user_id"], name: "index_hikes_on_user_id"
   end
 
