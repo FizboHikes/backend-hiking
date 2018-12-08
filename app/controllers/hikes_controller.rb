@@ -16,7 +16,7 @@ class HikesController < ApplicationController
   end
 
   def create
-    @hike = Hike.new(params.require(:hike).permit(:hikename, :comments, :tips, :user_id, :summary, :stars, :location, :image, :difficulty, :ascent, :high))
+    @hike = Hike.new(params.require(:hike).permit(:hikename, :comments, :tips, :user_id, :summary, :stars, :location, :image, :difficulty, :ascent, :high, :trailhead))
 
       if @hike.save
         render json: @hike, status: :created, location: @hike
