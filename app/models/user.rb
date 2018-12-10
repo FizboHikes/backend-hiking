@@ -12,6 +12,15 @@ class User < ApplicationRecord
   has_many :hikes
   has_many :user_friends, dependent: :destroy
   has_many :friends, through: :user_friends
-  has_many :follows, foreign_key: :friend_id, class_name: 'User'
-  has_many :followers, through: :follows
+
+  def get_friend_hikes
+    total_hikes = []
+    friends.each do |friend|
+      friend.hikes.each do |hike|
+        total_hikes << hike
+      end
+    end
+    total_hikes
+  end
+
 end

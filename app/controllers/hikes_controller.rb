@@ -15,6 +15,12 @@ class HikesController < ApplicationController
     render json: @userhikes
   end
 
+
+  def friend_hikes
+    @friend_hikes = User.find(params[:user_id]).get_friend_hikes
+    render json: @friend_hikes
+  end
+
   def create
     @hike = Hike.new(params.require(:hike).permit(:hikename, :comments, :tips, :user_id))
 
