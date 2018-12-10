@@ -9,14 +9,14 @@ class HikesController < ApplicationController
     render json: @hikes
   end
 
-  def userhikes
+  def user_hikes
     @user = User.find(params[:user_id])
     @userhikes = @user.hikes
     render json: @userhikes
   end
 
   def create
-    @hike = Hike.new(params.require(:hike).permit(:hikename, :comments, :tips, :user_id))
+    @hike = Hike.new(params.require(:hike).permit(:hikename, :comments, :tips, :user_id, :summary, :stars, :location, :image, :difficulty, :ascent, :high, :trailhead))
 
       if @hike.save
         render json: @hike, status: :created, location: @hike
