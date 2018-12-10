@@ -1,12 +1,12 @@
 class ProfilesController < ApplicationController
   def show
-    @profile = Profile.find(params[:id])
+    @profile = User.find(params[:id]).profile
     render json: @profile
   end
 
 
   def create
-    @profile = Profile.new(params.require(:profile).permit(:username, :about, :interests))
+    @profile = User.find(params[:id]).profile.new(params.require(:profile).permit(:username, :about, :interests))
 
         if @profile.save
         render json: @profile, status: :created, location: @profile
@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
-    @profile = Profile.find(params[:id])
+    @profile = User.find(params[:id]).profile
     @profile.destroy
   end
 
