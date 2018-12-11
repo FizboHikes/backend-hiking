@@ -23,7 +23,8 @@ class HikesController < ApplicationController
 
   def add_friend
     friend = User.find_by(email: params[:email])
-    result = User.find(params[:user_id]).add_friend(friend, current_user)
+    user = User.find(params[:user_id])
+    result = user.add_friend(friend)
     render json: {success: result}
   end
 

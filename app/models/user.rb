@@ -23,8 +23,8 @@ class User < ApplicationRecord
     total_hikes
   end
 
-  def add_friend(friend, current_user)
-    UserFriend.new({friend: friend, user: current_user }).save
+  def add_friend(friend)
+     UserFriend.new({friend: friend, user: self}).save
   end
 
 end
