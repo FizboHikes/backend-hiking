@@ -21,8 +21,10 @@ class HikesController < ApplicationController
     render json: @friend_hikes
   end
 
-  def add_friend(email)
-    User.find(params[:user_id]).add_friend(User.find_by(email: email))
+  def add_friend
+    friend = User.find_by(email: params[:email])
+    result = User.find(params[:user_id]).add_friend(friend, current_user)
+    render json: {success: result}
   end
 
   def create
