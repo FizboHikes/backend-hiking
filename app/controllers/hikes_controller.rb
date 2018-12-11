@@ -21,6 +21,10 @@ class HikesController < ApplicationController
     render json: @friend_hikes
   end
 
+  def add_friend(email)
+    User.find(params[:user_id]).add_friend(User.find_by(email: email))
+  end
+
   def create
     @hike = Hike.new(params.require(:hike).permit(:hikename, :comments, :tips, :user_id, :summary, :stars, :location, :image, :difficulty, :ascent, :high, :trailhead))
 

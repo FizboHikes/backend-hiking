@@ -23,4 +23,8 @@ class User < ApplicationRecord
     total_hikes
   end
 
+  def add_friend user
+    user_friends.create(friend: user)
+  end
+
 end
