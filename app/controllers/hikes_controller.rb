@@ -1,5 +1,5 @@
 class HikesController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def show
     @hike = Hike.find(params[:id])
