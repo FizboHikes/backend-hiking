@@ -1,4 +1,6 @@
 class HikesController < ApplicationController
+  # before_action :authenticate_user!
+
   def show
     @hike = Hike.find(params[:id])
     render json: @hike
@@ -10,6 +12,7 @@ class HikesController < ApplicationController
   end
 
   def user_hikes
+
     @user = User.find(params[:user_id])
     @userhikes = @user.hikes
     render json: @userhikes
@@ -30,7 +33,6 @@ class HikesController < ApplicationController
 
   def create
     @hike = Hike.new(params.require(:hike).permit(:hikename, :comments, :tips, :user_id, :summary, :stars, :location, :image, :difficulty, :ascent, :high, :trailhead))
-
       if @hike.save
         render json: @hike, status: :created, location: @hike
       else

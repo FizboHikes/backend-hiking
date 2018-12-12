@@ -27,4 +27,5 @@ class User < ApplicationRecord
      UserFriend.new({friend: friend, user: self}).save
   end
 
+
 end
