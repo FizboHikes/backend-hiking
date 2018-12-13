@@ -17,7 +17,9 @@ class User < ApplicationRecord
     total_hikes = []
     friends.each do |friend|
       friend.hikes.each do |hike|
+        hike = [hike, User.find(hike.user_id).email]
         total_hikes << hike
+
       end
     end
     total_hikes
