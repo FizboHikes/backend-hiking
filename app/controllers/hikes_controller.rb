@@ -1,9 +1,9 @@
 class HikesController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   def show
     @hike = Hike.find(params[:id])
-    render json: @hike
+    render json: @hike, include: :user
   end
 
   def index
@@ -14,14 +14,14 @@ class HikesController < ApplicationController
   def user_hikes
 
     @user = User.find(params[:user_id])
-    @userhikes = @user.hikes
+    @userhikes = @user.hikes.order("hikes.updated_at DESC")
     render json: @userhikes
   end
 
 
   def friend_hikes
     @friend_hikes = User.find(params[:user_id]).get_friend_hikes
-    render json: @friend_hikes
+    render json: @friend_hikes, include: :user
   end
 
   def add_friend
