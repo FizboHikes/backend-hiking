@@ -25,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def add_friend(friend)
-     UserFriend.new({friend: friend, user: self}).save
+     UserFriend.create({friend: friend, user: self})
   end
 
 

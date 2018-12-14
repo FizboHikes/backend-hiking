@@ -27,8 +27,13 @@ class HikesController < ApplicationController
   def add_friend
     friend = User.find_by(email: params[:email])
     user = User.find(params[:user_id])
-    result = user.add_friend(friend)
-    render json: {success: result}
+    new_friend = user.add_friend(friend)
+    if new_friend.errors.empty?
+      render json: {success: true}
+    else
+      render json: {success: false, errors: new_friend.errors}, status: :unprocessable_entity
+    end
+
   end
 
   def create
