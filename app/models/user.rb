@@ -10,4 +10,23 @@ class User < ApplicationRecord
 
   has_one :profile
   has_many :hikes
+  has_many :user_friends, dependent: :destroy
+  has_many :friends, through: :user_friends
+
+  def get_friend_hikes
+    total_hikes = []
+    friends.each do |friend|
+      friend.hikes.each do |hike|
+        total_hikes << hike
+
+      end
+    end
+    total_hikes
+  end
+
+  def add_friend(friend)
+     UserFriend.create({friend: friend, user: self})
+  end
+
+
 end
