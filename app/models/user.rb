@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   has_one :profile
   has_many :hikes
-  has_many :user_friends, dependent: :destroy
+  has_many :user_friends, dependent: :destroy, foreign_key: "user_id"
   has_many :friends, through: :user_friends
 
   def get_friend_hikes
