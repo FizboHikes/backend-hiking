@@ -20,7 +20,9 @@ class HikesController < ApplicationController
 
 
   def friend_hikes
-    @friend_hikes = User.find(params[:user_id]).get_friend_hikes
+    friend_ids = current_user.user_friends.pluck(:friend_id)
+    @friend_hikes = Hike.includes(user: :user_friends).where(user_id: friend_ids).order("user_friends.updated_at DESC")
+    # @friend_hikes = User.find(params[:user_id]).get_friend_hikes
     render json: @friend_hikes, include: :user
   end
 
